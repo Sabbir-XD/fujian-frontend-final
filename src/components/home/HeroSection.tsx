@@ -13,42 +13,117 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/effect-fade";
 
+// const banners = [
+//   {
+//     badge: "Trusted Garment Accessories Manufacturer",
+//     title: "Fujian Accessories Co. Ltd.",
+//     subtitle: "Professional Garment Accessories Supplier",
+//     desc: "We manufacture premium buttons, zippers, labels, and custom garment accessories for global fashion brands with strict quality control.",
+//     bgImage: "cover/cover.jpg",
+//     features: [
+//       { icon: Factory, title: "Factory Direct", text: "In-house production" },
+//       { icon: ShieldCheck, title: "Strict QC", text: "Export standards" },
+//       { icon: Globe, title: "Global Export", text: "Worldwide clients" },
+//     ],
+//   },
+//   {
+//     badge: "OEM & ODM Services",
+//     title: "Custom Accessories Solutions",
+//     subtitle: "From Design to Bulk Production",
+//     desc: "OEM & ODM garment accessories with flexible MOQ, fast sampling, and reliable delivery for fashion brands.",
+//     bgImage: "cover/germents-accsorice.jpg",
+//     features: [
+//       { icon: Factory, title: "OEM / ODM", text: "Custom designs" },
+//       { icon: Truck, title: "Fast Delivery", text: "On-time shipment" },
+//       { icon: Globe, title: "Worldwide", text: "Trusted partner" },
+//     ],
+//   },
+//   {
+//     badge: "Quality Assurance",
+//     title: "International Quality Control",
+//     subtitle: "Consistency You Can Rely On",
+//     desc: "Multi-stage inspection ensures durability, color accuracy, and long-term performance.",
+//     bgImage:
+//       "https://images.ctfassets.net/0c6y4qslwvqw/2syKE8aHUCqoV4bBZeOTiZ/e837df3a53326a5b2b8476c6456f6dda/QIMA_inspector_-_colour_check_inspection.jpg?fm=jpg&q=60&w=1000",
+//     features: [
+//       { icon: ShieldCheck, title: "Certified QC", text: "Batch inspection" },
+//       { icon: Factory, title: "Modern Factory", text: "Advanced machinery" },
+//       { icon: Globe, title: "Export Ready", text: "Global compliance" },
+//     ],
+//   },
+// ];
+
 const banners = [
   {
-    badge: "Trusted Garment Accessories Manufacturer",
-    title: "Fujian Accessories Co. Ltd.",
-    subtitle: "Professional Garment Accessories Supplier",
-    desc: "We manufacture premium buttons, zippers, labels, and custom garment accessories for global fashion brands with strict quality control.",
-    bgImage: "cover/cover.jpg",
+    badge: "Leading Garment Accessories Manufacturer in Bangladesh",
+    title: "Garment Accessories",
+    subtitle: "Reliable RMG Accessories Supplier & Exporter",
+    desc: "We are a trusted Bangladesh garment accessories manufacturer supplying premium buttons, zippers, labels, tags, elastics, and custom trims for global apparel brands with strict quality control and compliance.",
+    bgImage: "hero/accessories-picture.webp",
     features: [
-      { icon: Factory, title: "Factory Direct", text: "In-house production" },
-      { icon: ShieldCheck, title: "Strict QC", text: "Export standards" },
-      { icon: Globe, title: "Global Export", text: "Worldwide clients" },
+      {
+        icon: Factory,
+        title: "Own Manufacturing Unit",
+        text: "Factory direct production in Bangladesh",
+      },
+      {
+        icon: ShieldCheck,
+        title: "Export Quality",
+        text: "Strict QC & compliance standards",
+      },
+      {
+        icon: Globe,
+        title: "Global Supply",
+        text: "Serving worldwide apparel brands",
+      },
     ],
   },
   {
-    badge: "OEM & ODM Services",
-    title: "Custom Accessories Solutions",
-    subtitle: "From Design to Bulk Production",
-    desc: "OEM & ODM garment accessories with flexible MOQ, fast sampling, and reliable delivery for fashion brands.",
-    bgImage: "cover/germents-accsorice.jpg",
+    badge: "OEM & ODM Garment Accessories Services",
+    title: "Customized Accessories Solutions for RMG",
+    subtitle: "From Sampling to Bulk Production",
+    desc: "We offer OEM & ODM garment accessories solutions in Bangladesh with flexible MOQ, fast sampling, competitive pricing, and reliable on-time delivery for fashion brands and buying houses.",
+    bgImage: "hero/customized-accessories.jpeg",
     features: [
-      { icon: Factory, title: "OEM / ODM", text: "Custom designs" },
-      { icon: Truck, title: "Fast Delivery", text: "On-time shipment" },
-      { icon: Globe, title: "Worldwide", text: "Trusted partner" },
+      {
+        icon: Factory,
+        title: "OEM / ODM Support",
+        text: "Custom designs & development",
+      },
+      {
+        icon: Truck,
+        title: "On-Time Delivery",
+        text: "Efficient logistics & shipment",
+      },
+      {
+        icon: Globe,
+        title: "Trusted Worldwide",
+        text: "Preferred supplier for exporters",
+      },
     ],
   },
   {
-    badge: "Quality Assurance",
-    title: "International Quality Control",
-    subtitle: "Consistency You Can Rely On",
-    desc: "Multi-stage inspection ensures durability, color accuracy, and long-term performance.",
-    bgImage:
-      "https://images.ctfassets.net/0c6y4qslwvqw/2syKE8aHUCqoV4bBZeOTiZ/e837df3a53326a5b2b8476c6456f6dda/QIMA_inspector_-_colour_check_inspection.jpg?fm=jpg&q=60&w=1000",
+    badge: "Quality & Compliance Assurance",
+    title: "International Standard Quality Control",
+    subtitle: "Consistency, Durability & Performance",
+    desc: "Our multi-stage quality inspection process ensures durability, color fastness, and performance, meeting international buyer requirements and global compliance standards.",
+    bgImage: "hero/sewing-machine.jpeg",
     features: [
-      { icon: ShieldCheck, title: "Certified QC", text: "Batch inspection" },
-      { icon: Factory, title: "Modern Factory", text: "Advanced machinery" },
-      { icon: Globe, title: "Export Ready", text: "Global compliance" },
+      {
+        icon: ShieldCheck,
+        title: "Certified QC Process",
+        text: "Batch & inline inspection",
+      },
+      {
+        icon: Factory,
+        title: "Modern Production Facility",
+        text: "Advanced machinery & skilled workforce",
+      },
+      {
+        icon: Globe,
+        title: "Buyer Compliance Ready",
+        text: "Export-ready for global markets",
+      },
     ],
   },
 ];

@@ -36,12 +36,12 @@ export default function ContactPage() {
         {/* HEADER */}
         <section className="mx-auto max-w-3xl text-center space-y-4 mt-10 mb-10">
           <span className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-4 py-1 text-xs font-medium text-[#00019A]">
-            <Factory className="h-4 w-4" />
-            Factory Direct Manufacturer
+           
+            Contact Fujian Accessories Co. Ltd.
           </span>
 
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900">
-            Contact Fujian Accessories Co. Ltd.
+            Get in Touch 
           </h1>
 
           <p className="text-gray-600">

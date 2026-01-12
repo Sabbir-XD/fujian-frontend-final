@@ -116,60 +116,62 @@ export default function Certifications() {
           ))}
         </motion.div>
       </div>
-
-      {/* ================= MODAL ================= */}
-      <AnimatePresence>
-        {selectedCert && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setSelectedCert(null)}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4"
-          >
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              onClick={(e) => e.stopPropagation()}
-              className="max-w-4xl w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl"
-            >
-              {/* MODAL HEADER */}
-              <div className="bg-linear-to-r from-[#00019A] to-blue-600 p-6 text-white relative">
-                <button
-                  onClick={() => setSelectedCert(null)}
-                  className="absolute right-4 top-4 p-2 bg-white/20 rounded-full hover:bg-white/30"
-                >
-                  <X className="w-5 h-5" />
-                </button>
-
-                <div className="flex items-center gap-4">
-                  <Award className="w-8 h-8" />
-                  <div>
-                    <h3 className="text-xl font-bold">
-                      {selectedCert.name}
-                    </h3>
-                    <p className="text-blue-100 text-sm">
-                      {selectedCert.description}
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* MODAL BODY */}
-              <div className="p-6 max-h-[70vh] overflow-auto">
-                <Image
-                  src={selectedCert.certificate}
-                  alt={selectedCert.name}
-                  width={1200}
-                  height={800}
-                  className="w-full object-contain rounded-xl"
-                />
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </section>
   );
 }
+
+{
+  /* ================= MODAL ================= */
+}
+// <AnimatePresence>
+//   {selectedCert && (
+//     <motion.div
+//       initial={{ opacity: 0 }}
+//       animate={{ opacity: 1 }}
+//       exit={{ opacity: 0 }}
+//       onClick={() => setSelectedCert(null)}
+//       className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4"
+//     >
+//       <motion.div
+//         initial={{ scale: 0.9, opacity: 0 }}
+//         animate={{ scale: 1, opacity: 1 }}
+//         exit={{ scale: 0.9, opacity: 0 }}
+//         onClick={(e) => e.stopPropagation()}
+//         className="max-w-4xl w-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl"
+//       >
+//         {/* MODAL HEADER */}
+//         <div className="bg-linear-to-r from-[#00019A] to-blue-600 p-6 text-white relative">
+//           <button
+//             onClick={() => setSelectedCert(null)}
+//             className="absolute right-4 top-4 p-2 bg-white/20 rounded-full hover:bg-white/30"
+//           >
+//             <X className="w-5 h-5" />
+//           </button>
+
+//           <div className="flex items-center gap-4">
+//             <Award className="w-8 h-8" />
+//             <div>
+//               <h3 className="text-xl font-bold">
+//                 {selectedCert.name}
+//               </h3>
+//               <p className="text-blue-100 text-sm">
+//                 {selectedCert.description}
+//               </p>
+//             </div>
+//           </div>
+//         </div>
+
+//         {/* MODAL BODY */}
+//         <div className="p-6 max-h-[70vh] overflow-auto">
+//           <Image
+//             src={selectedCert.certificate}
+//             alt={selectedCert.name}
+//             width={1200}
+//             height={800}
+//             className="w-full object-contain rounded-xl"
+//           />
+//         </div>
+//       </motion.div>
+//     </motion.div>
+//   )}
+// </AnimatePresence>

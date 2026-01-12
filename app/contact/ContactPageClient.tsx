@@ -13,10 +13,8 @@ import {
 
 function ContactPageClient() {
   return (
-    <main className="relative pt-24 bg-gradient-to-b from-blue-50 via-white to-white">
+    <main className="relative pt-24 bg-linear-to-b from-blue-50 via-white to-white">
       <section className="mx-auto max-w-7xl px-4 md:px-6">
-        
-
         {/* MAIN GRID */}
         <div className="grid gap-14 lg:grid-cols-2 items-stretch">
           {/* LEFT – FORM */}

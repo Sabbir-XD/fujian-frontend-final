@@ -41,7 +41,7 @@ export default function ManufacturingPage() {
         {/*  HERO  */}
         <section className="pt-10 px-4">
           <div className="mx-auto max-w-4xl text-center space-y-2">
-            <span className="inline-block rounded-full border border-blue-200 bg-blue-50 px-6 py-2 text-sm font-medium text-[#00019A]">
+            <span className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-4 py-1 text-xs font-medium text-[#00019A]">
               Manufacturing Fujian Accessories Co. Ltd.
             </span>
 

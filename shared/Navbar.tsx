@@ -1,155 +1,156 @@
 "use client";
 
+import { useState, memo, ReactNode } from "react";
+import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useEffect, memo } from "react";
 import { usePathname } from "next/navigation";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, Send } from "lucide-react";
 
 import NavHead from "./NavHead";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 const navItems = [
   { name: "Home", href: "/" },
-  {
-    name: "Products",
-    href: "/products",
-    subItems: [
-      // { name: "Garment Accessories", href: "/products/garment" },
-      // { name: "Packaging Solutions", href: "/products/packaging" },
-      // { name: "Custom Manufacturing", href: "/products/custom" },
-    ],
-  },
+  { name: "Products", href: "/products" },
   { name: "Manufacturing", href: "/manufacturing" },
-  // { name: "Quality", href: "/quality" },
   { name: "About", href: "/about" },
   { name: "Contact", href: "/contact" },
 ];
+
+function Field({
+  label,
+  children,
+}: {
+  label: string;
+  children: ReactNode;
+}) {
+  return (
+    <div>
+      <label className="mb-1 block text-sm font-medium text-gray-700">
+        {label}
+      </label>
+      {children}
+    </div>
+  );
+}
 
 function Navbar() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  const { scrollY } = useScroll();
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    setScrolled(latest > 20);
+  });
 
   const isActive = (href: string) =>
     pathname === href || (href !== "/" && pathname.startsWith(href));
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-white">
-      {/* Top Head */}
-      <div
-        className={`hidden md:block transition-all duration-300 ${
-          scrolled ? "h-0 opacity-0 overflow-hidden" : "h-auto opacity-100"
-        }`}
-      >
-        <NavHead scrolled={scrolled} />
-      </div>
+    <Dialog>
+      <header className="sticky top-0 z-50 w-full bg-white">
+        {/* Top Head */}
+        <motion.div
+          className="hidden md:block overflow-hidden"
+          initial={{ height: "auto", opacity: 1 }}
+          animate={{ height: scrolled ? 0 : "auto", opacity: scrolled ? 0 : 1 }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+        >
+          <NavHead scrolled={scrolled} />
+        </motion.div>
 
-      {/* Main Navbar */}
-      <div
-        className={`border-b transition-shadow ${
-          scrolled ? "shadow-md" : "border-gray-200"
-        }`}
-      >
-        <div className="mx-auto max-w-7xl px-4">
-          <div className="flex h-16 items-center justify-between">
-            {/* Logo */}
-            <Link href="/" className="flex items-center">
-              <Image
-                src="/fujian.svg"
-                alt="Fujian Accessories"
-                width={160}
-                height={40}
-                priority
-                className="w-36 lg:w-40"
-              />
-            </Link>
+        {/* Main Navbar */}
+        <div
+          className={`border-b transition-shadow ${
+            scrolled ? "shadow-md" : "border-gray-200"
+          }`}
+        >
+          <div className="mx-auto max-w-7xl px-4">
+            <div className="flex h-16 items-center justify-between">
+              {/* Logo */}
+              <Link href="/" className="flex items-center">
+                <Image
+                  src="/fujian.svg"
+                  alt="Fujian Accessories"
+                  width={160}
+                  height={40}
+                  priority
+                  className="w-36 lg:w-40"
+                />
+              </Link>
 
-            {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center gap-8">
-              {navItems.map((item) => (
-                <div key={item.name} className="relative group">
+              {/* Desktop Navigation */}
+              <nav className="hidden md:flex items-center gap-8">
+                {navItems.map((item) => (
                   <Link
+                    key={item.name}
                     href={item.href}
-                    className={`flex items-center gap-1 text-sm font-semibold transition ${
+                    className={`text-sm font-semibold transition ${
                       isActive(item.href)
                         ? "text-blue-700"
                         : "text-gray-700 hover:text-blue-700"
                     }`}
                   >
                     {item.name}
-                    {/* {item?.subItems && (
-                      <ChevronDown className="h-4 w-4 transition-transform group-hover:rotate-180" />
-                    )} */}
                   </Link>
+                ))}
+              </nav>
 
-                  {/* Dropdown */}
-                  {/* {item.subItems && (
-                    <div className="absolute left-0 top-full mt-3 w-56 rounded-lg border bg-white shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition">
-                      {item.subItems.map((sub) => (
-                        <Link
-                          key={sub.name}
-                          href={sub.href}
-                          className="block px-5 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700"
-                        >
-                          {sub.name}
-                        </Link>
-                      ))}
-                    </div>
-                  )} */}
-                </div>
-              ))}
-            </nav>
+              {/* Desktop CTA */}
+              <DialogTrigger asChild>
+                <Button className="hidden md:block bg-[#00019A] text-white hover:bg-[#000178]">
+                  Get Quote
+                </Button>
+              </DialogTrigger>
 
-            {/* Desktop CTA */}
-            <Button className="hidden md:block bg-[#00019A] hover:bg-blue-800 text-white">
-              Get Quote
-            </Button>
-
-            {/* Mobile Controls */}
-            <div className="flex items-center gap-3 md:hidden">
-              <Button size="sm" className="bg-blue-700 text-white">
-                Quote
-              </Button>
-
-              <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
-                <SheetTrigger asChild>
-                  <Button variant="ghost" size="icon">
-                    <Menu className="h-6 w-6" />
+              {/* Mobile Controls */}
+              <div className="flex items-center gap-3 md:hidden">
+                <DialogTrigger asChild>
+                  <Button size="sm" className="bg-[#00019A] text-white">
+                    Quote
                   </Button>
-                </SheetTrigger>
+                </DialogTrigger>
 
-                <SheetContent side="left" className="w-80 p-0">
-                  <div className="flex h-full flex-col">
-                    {/* Drawer Header */}
-                    <div className="flex items-center justify-between border-b p-6">
-                      <Image
-                        src="/fujian.svg"
-                        alt="Logo"
-                        width={140}
-                        height={40}
-                      />
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        onClick={() => setMobileOpen(false)}
-                      >
-                        <X />
-                      </Button>
-                    </div>
+                <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
+                  <SheetTrigger asChild>
+                    <Button variant="ghost" size="icon">
+                      <Menu className="h-6 w-6" />
+                    </Button>
+                  </SheetTrigger>
 
-                    {/* Drawer Nav */}
-                    <nav className="flex-1 overflow-y-auto px-6 py-8">
-                      {navItems.map((item) => (
-                        <div key={item.name} className="mb-5">
+                  <SheetContent side="left" className="w-80 p-0">
+                    <div className="flex h-full flex-col">
+                      <div className="flex items-center justify-between border-b p-6">
+                        <Image
+                          src="/fujian.svg"
+                          alt="Logo"
+                          width={140}
+                          height={40}
+                        />
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          onClick={() => setMobileOpen(false)}
+                        >
+                          <X />
+                        </Button>
+                      </div>
+
+                      <nav className="flex-1 overflow-y-auto px-6 py-8">
+                        {navItems.map((item) => (
                           <Link
+                            key={item.name}
                             href={item.href}
                             onClick={() => setMobileOpen(false)}
                             className={`block py-2 text-lg font-medium ${
@@ -160,39 +161,76 @@ function Navbar() {
                           >
                             {item.name}
                           </Link>
+                        ))}
+                      </nav>
 
-                          {/* {item.subItems && (
-                            <div className="ml-4 mt-2 space-y-2">
-                              {item.subItems.map((sub) => (
-                                <Link
-                                  key={sub.name}
-                                  href={sub.href}
-                                  onClick={() => setMobileOpen(false)}
-                                  className="block text-base text-gray-600 hover:text-blue-700"
-                                >
-                                  {sub.name}
-                                </Link>
-                              ))}
-                            </div>
-                          )} */}
-                        </div>
-                      ))}
-                    </nav>
-
-                    {/* Drawer CTA */}
-                    <div className="border-t p-6">
-                      <Button className="w-full bg-[#00019A] text-white">
-                        <a href="mailto:info@faclbangladesh.com">Get Quote</a>
-                      </Button>
+                      <div className="border-t p-6">
+                        <DialogTrigger asChild>
+                          <Button className="w-full bg-[#00019A] text-white">
+                            Get Quote
+                          </Button>
+                        </DialogTrigger>
+                      </div>
                     </div>
-                  </div>
-                </SheetContent>
-              </Sheet>
+                  </SheetContent>
+                </Sheet>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </header>
+      </header>
+
+      {/* MODAL */}
+      <DialogContent className="w-full max-w-xl rounded-2xl p-6 sm:p-8">
+        <DialogHeader>
+          <DialogTitle className="text-xl font-semibold">
+            Send Us a Message
+          </DialogTitle>
+        </DialogHeader>
+
+        <form className="mt-4 space-y-5">
+          <div className="grid gap-5 sm:grid-cols-2">
+            <Field label="Your Name">
+              <input className="input" placeholder="John Doe" />
+            </Field>
+
+            <Field label="Your Email">
+              <input
+                type="email"
+                className="input"
+                placeholder="john@email.com"
+              />
+            </Field>
+          </div>
+
+          <div className="grid gap-5 sm:grid-cols-2">
+            <Field label="Contact Number">
+              <input className="input" placeholder="+880 1XXXXXXXXX" />
+            </Field>
+
+            <Field label="Subject">
+              <input className="input" placeholder="Quotation / Sample / MOQ" />
+            </Field>
+          </div>
+
+          <Field label="Write Something">
+            <textarea
+              rows={4}
+              className="input resize-none"
+              placeholder="Describe your requirement in details..."
+            />
+          </Field>
+
+          <button
+            type="submit"
+            className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#00019A] px-6 py-3 text-sm font-medium text-white hover:bg-[#000178]"
+          >
+            <Send className="h-4 w-4" />
+            Submit Inquiry
+          </button>
+        </form>
+      </DialogContent>
+    </Dialog>
   );
 }
 
