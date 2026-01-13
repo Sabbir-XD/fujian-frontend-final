@@ -36,7 +36,7 @@ export const metadata: Metadata = {
 
 export default function ManufacturingPage() {
   return (
-    <section className="flex flex-col lg:gap-20 px-4 md:px-6">
+    <section className="relative flex flex-col lg:gap-20 px-4 md:px-6">
       <div>
         {/*  HERO  */}
         {/* <section className="pt-10 px-4">

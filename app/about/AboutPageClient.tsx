@@ -102,7 +102,7 @@ function AboutPageClient() {
   return (
     <main className="relative overflow-hidden bg-linear-to-b from-blue-50 via-white to-white">
       {/* ================= OVERVIEW ================= */}
-      <section className="py-20">
+      <section className="py-10">
         <div className="mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-16 items-center px-4">
           {/* Image */}
           <div className="relative">
@@ -148,7 +148,7 @@ function AboutPageClient() {
       </section>
 
       {/* ================= CORE STRENGTHS ================= */}
-      <section className="py-24 bg-white">
+      <section className="py-10 bg-white">
         <div className="mx-auto max-w-7xl px-4">
           <SectionHead title={strengths.title} subtitle={strengths.subtitle} />
 
@@ -166,7 +166,7 @@ function AboutPageClient() {
       </section>
 
       {/* ================= JOURNEY ================= */}
-      <section className="py-24 bg-blue-50">
+      <section className="py-10 bg-blue-50">
         <div className="mx-auto max-w-6xl px-4">
           <SectionHead title={journey.title} subtitle={journey.subtitle} />
 

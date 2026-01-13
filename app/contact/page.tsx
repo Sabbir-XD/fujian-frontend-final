@@ -34,11 +34,11 @@ export default function ContactPage() {
     <section className="w-full">
       <div>
         {/* HEADER */}
-        <section className="mx-auto max-w-3xl text-center space-y-4 mt-10 mb-10">
-          <span className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-4 py-1 text-xs font-medium text-[#00019A]">
+        <section className="mx-auto max-w-3xl text-center space-y-4 mt-5 mb-10">
+          {/* <span className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-4 py-1 text-xs font-medium text-[#00019A]">
            
             Contact Fujian Accessories Co. Ltd.
-          </span>
+          </span> */}
 
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900">
             Get in Touch 

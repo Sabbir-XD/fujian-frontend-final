@@ -1,22 +1,16 @@
 "use client";
 
-import { useState, memo, ReactNode } from "react";
+import { useState, memo } from "react";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Menu, X, Send } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 import NavHead from "./NavHead";
+import QuoteModal from "./QuoteModal";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 
 const navItems = [
   { name: "Home", href: "/" },
@@ -26,27 +20,11 @@ const navItems = [
   { name: "Contact", href: "/contact" },
 ];
 
-function Field({
-  label,
-  children,
-}: {
-  label: string;
-  children: ReactNode;
-}) {
-  return (
-    <div>
-      <label className="mb-1 block text-sm font-medium text-gray-700">
-        {label}
-      </label>
-      {children}
-    </div>
-  );
-}
-
 function Navbar() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [quoteOpen, setQuoteOpen] = useState(false);
 
   const { scrollY } = useScroll();
 
@@ -58,14 +36,14 @@ function Navbar() {
     pathname === href || (href !== "/" && pathname.startsWith(href));
 
   return (
-    <Dialog>
+    <>
       <header className="sticky top-0 z-50 w-full bg-white">
         {/* Top Head */}
         <motion.div
           className="hidden md:block overflow-hidden"
           initial={{ height: "auto", opacity: 1 }}
           animate={{ height: scrolled ? 0 : "auto", opacity: scrolled ? 0 : 1 }}
-          transition={{ duration: 0.3, ease: "easeInOut" }}
+          transition={{ duration: 0.3 }}
         >
           <NavHead scrolled={scrolled} />
         </motion.div>
@@ -90,7 +68,7 @@ function Navbar() {
                 />
               </Link>
 
-              {/* Desktop Navigation */}
+              {/* Desktop Nav */}
               <nav className="hidden md:flex items-center gap-8">
                 {navItems.map((item) => (
                   <Link
@@ -108,19 +86,22 @@ function Navbar() {
               </nav>
 
               {/* Desktop CTA */}
-              <DialogTrigger asChild>
-                <Button className="hidden md:block bg-[#00019A] text-white hover:bg-[#000178]">
-                  Get Quote
-                </Button>
-              </DialogTrigger>
+              <Button
+                onClick={() => setQuoteOpen(true)}
+                className="hidden md:block bg-[#00019A] text-white hover:bg-[#000178]"
+              >
+                Get Quote
+              </Button>
 
-              {/* Mobile Controls */}
+              {/* Mobile */}
               <div className="flex items-center gap-3 md:hidden">
-                <DialogTrigger asChild>
-                  <Button size="sm" className="bg-[#00019A] text-white">
-                    Quote
-                  </Button>
-                </DialogTrigger>
+                <Button
+                  size="sm"
+                  onClick={() => setQuoteOpen(true)}
+                  className="bg-[#00019A] text-white"
+                >
+                  Quote
+                </Button>
 
                 <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
                   <SheetTrigger asChild>
@@ -147,7 +128,7 @@ function Navbar() {
                         </Button>
                       </div>
 
-                      <nav className="flex-1 overflow-y-auto px-6 py-8">
+                      <nav className="flex-1 px-6 py-8">
                         {navItems.map((item) => (
                           <Link
                             key={item.name}
@@ -165,11 +146,15 @@ function Navbar() {
                       </nav>
 
                       <div className="border-t p-6">
-                        <DialogTrigger asChild>
-                          <Button className="w-full bg-[#00019A] text-white">
-                            Get Quote
-                          </Button>
-                        </DialogTrigger>
+                        <Button
+                          onClick={() => {
+                            setMobileOpen(false);
+                            setQuoteOpen(true);
+                          }}
+                          className="w-full bg-[#00019A] text-white"
+                        >
+                          Get Quote
+                        </Button>
                       </div>
                     </div>
                   </SheetContent>
@@ -180,57 +165,9 @@ function Navbar() {
         </div>
       </header>
 
-      {/* MODAL */}
-      <DialogContent className="w-full max-w-xl rounded-2xl p-6 sm:p-8">
-        <DialogHeader>
-          <DialogTitle className="text-xl font-semibold">
-            Send Us a Message
-          </DialogTitle>
-        </DialogHeader>
-
-        <form className="mt-4 space-y-5">
-          <div className="grid gap-5 sm:grid-cols-2">
-            <Field label="Your Name">
-              <input className="input" placeholder="John Doe" />
-            </Field>
-
-            <Field label="Your Email">
-              <input
-                type="email"
-                className="input"
-                placeholder="john@email.com"
-              />
-            </Field>
-          </div>
-
-          <div className="grid gap-5 sm:grid-cols-2">
-            <Field label="Contact Number">
-              <input className="input" placeholder="+880 1XXXXXXXXX" />
-            </Field>
-
-            <Field label="Subject">
-              <input className="input" placeholder="Quotation / Sample / MOQ" />
-            </Field>
-          </div>
-
-          <Field label="Write Something">
-            <textarea
-              rows={4}
-              className="input resize-none"
-              placeholder="Describe your requirement in details..."
-            />
-          </Field>
-
-          <button
-            type="submit"
-            className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#00019A] px-6 py-3 text-sm font-medium text-white hover:bg-[#000178]"
-          >
-            <Send className="h-4 w-4" />
-            Submit Inquiry
-          </button>
-        </form>
-      </DialogContent>
-    </Dialog>
+      {/* PORTAL MODAL */}
+      <QuoteModal open={quoteOpen} onClose={() => setQuoteOpen(false)} />
+    </>
   );
 }
 

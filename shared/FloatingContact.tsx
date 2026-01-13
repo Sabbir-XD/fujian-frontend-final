@@ -1,6 +1,5 @@
 "use client";
 
-
 import { memo } from "react";
 import Link from "next/link";
 import { PhoneCall } from "lucide-react";
@@ -31,8 +30,6 @@ function FloatingContact() {
         <span className="absolute inset-0 rounded-2xl bg-[#25D366]/25 blur-xl" />
         <FaWhatsapp className="relative h-4 w-4 text-[#25D366] lg:h-6 lg:w-6" />
       </Link>
-
-    
     </div>
   );
 }

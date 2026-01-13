@@ -1,10 +1,10 @@
 import HeroSection from "@/src/components/home/HeroSection";
 import AboutSection from "@/src/components/home/AboutSection";
-import WhyChooseUs from "@/src/components/home/WhyChooseUs";
 import OurClient from "@/src/components/home/OurClient";
-import CTASection from "@/src/components/home/CTASection";
 import Certifications from "@/src/components/home/Certifications";
 import ProductCategories from "@/src/components/home/ProductCategories";
+import ManufacturingSection from "@/src/components/home/ManufacturingSection";
+import HomeManufacturingSection from "@/src/components/home/HomeManufacturingSection";
 
 export default function Home() {
   return (
@@ -14,7 +14,9 @@ export default function Home() {
         <AboutSection />
         <ProductCategories />
         {/* <WhyChooseUs /> */}
+        {/* <ManufacturingSection /> */}
         <Certifications />
+        <HomeManufacturingSection />
         <OurClient />
       </main>
       {/* <CTASection /> */}

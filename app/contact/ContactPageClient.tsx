@@ -204,10 +204,15 @@ function LocationCard({
         {title}
       </h3>
       <p className="text-xs text-gray-600 whitespace-pre-line">{address}</p>
-      <p className="text-xs text-gray-700">
-        📞 {phone}
-        <br />✉ {emails.join(", ")}
-      </p>
+      <div className="text-xs md:text-md text-gray-700">
+        <p className="flex justify-items-center items-center gap-1">
+          <Phone size={16} /> {phone}
+        </p>
+        <br />
+        <p className="flex justify-items-center items-center gap-1">
+          <Mail size={16} /> {emails.join(", ")}
+        </p>
+      </div>
     </div>
   );
 }
