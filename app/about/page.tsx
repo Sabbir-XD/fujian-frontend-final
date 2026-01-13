@@ -31,7 +31,7 @@ export default function AboutPage() {
     <section className="w-full">
       <div>
         {/*  HERO  */}
-        <section className="pt-10 pb-20 px-4">
+        {/* <section className="pt-10 pb-20 px-4">
           <div className="mx-auto max-w-4xl text-center space-y-2">
             <span className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-4 py-1 text-xs font-medium text-[#00019A]">
               About Fujian Accessories Co. Ltd.
@@ -41,7 +41,7 @@ export default function AboutPage() {
               About Us
             </h1>
           </div>
-        </section>
+        </section> */}
         <AboutPageClient />
       </div>
     </section>
