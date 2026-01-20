@@ -170,26 +170,4 @@ function HeroSlider() {
   );
 }
 
-// const TrustItem = memo(function TrustItem({
-//   icon,
-//   title,
-//   text,
-// }: {
-//   icon: React.ReactNode;
-//   title: string;
-//   text: string;
-// }) {
-//   return (
-//     <div className="flex items-center gap-3 rounded-md bg-white/10 p-3 backdrop-blur">
-//       <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/20">
-//         {icon}
-//       </div>
-//       <div>
-//         <p className="text-sm font-semibold">{title}</p>
-//         <p className="text-xs text-gray-300">{text}</p>
-//       </div>
-//     </div>
-//   );
-// });
-
 export default memo(HeroSlider);
